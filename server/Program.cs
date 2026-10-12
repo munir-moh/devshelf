@@ -68,6 +68,13 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+// Create or update the SQLite schema before serving requests.
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
