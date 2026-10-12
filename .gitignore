@@ -28,6 +28,7 @@ dist-ssr/
 .env
 .env.*
 !.env.example
+!client/.env.production
 
 # OS generated files
 .DS_Store
